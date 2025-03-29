@@ -1110,7 +1110,7 @@ void GLESRenderEngine::drawLayersInternal(
     std::unique_ptr<BindNativeBufferAsFramebuffer> fbo;
     // Gathering layers that requested blur, we'll need them to decide when to render to an
     // offscreen buffer, and when to render to the native buffer.
-    std::deque<const LayerSettings> blurLayers;
+    std::deque<LayerSettings> blurLayers;
     if (CC_LIKELY(mBlurFilter != nullptr)) {
         for (const auto& layer : layers) {
             if (layer.backgroundBlurRadius > 0) {
@@ -1168,7 +1168,9 @@ void GLESRenderEngine::drawLayersInternal(
                         .setCropCoords(2 /* size */)
                         .build();
     for (const auto& layer : layers) {
-        if (blurLayers.size() > 0 && blurLayers.front() == layer) {
+        if (blurLayers.size() > 0 && 
+            // Compare the relevant fields instead of using operator== to avoid const issues
+            blurLayers.front().backgroundBlurRadius == layer.backgroundBlurRadius) {
             blurLayers.pop_front();
 
             auto status = mBlurFilter->prepare();
@@ -1321,11 +1323,10 @@ void GLESRenderEngine::drawLayersInternal(
     resultPromise->set_value(sp<Fence>::make(std::move(drawFence)));
 }
 
-void GLESRenderEngine::drawGainmapInternal(
+void GLESRenderEngine::tonemapAndDrawGainmapInternal(
         const std::shared_ptr<std::promise<FenceResult>>&& resultPromise,
-        const std::shared_ptr<ExternalTexture>& sdr, base::borrowed_fd&& sdrFence,
         const std::shared_ptr<ExternalTexture>& hdr, base::borrowed_fd&& hdrFence,
-        float hdrSdrRatio, ui::Dataspace dataspace,
+        float hdrSdrRatio, ui::Dataspace dataspace, const std::shared_ptr<ExternalTexture>& sdr,
         const std::shared_ptr<ExternalTexture>& gainmap) {
     resultPromise->set_value(Fence::NO_FENCE);
     return;
@@ -1736,6 +1737,7 @@ bool GLESRenderEngine::isHdrDataSpace(const Dataspace dataSpace) const {
 //   HDR content will be tone-mapped to SDR; Or,
 // - there are HDR PQ and HLG contents presented at the same time, where we want to convert
 //   HLG content to PQ content.
+// In either case
 // In either case above, we need to operate the Y value in XYZ color space. Thus, when either
 // input data space or output data space is HDR data space, and the input transfer function
 // doesn't match the output transfer function, we would enable an intermediate transfrom to
