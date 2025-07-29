@@ -1323,10 +1323,11 @@ void GLESRenderEngine::drawLayersInternal(
     resultPromise->set_value(sp<Fence>::make(std::move(drawFence)));
 }
 
-void GLESRenderEngine::tonemapAndDrawGainmapInternal(
+void GLESRenderEngine::drawGainmapInternal(
         const std::shared_ptr<std::promise<FenceResult>>&& resultPromise,
+        const std::shared_ptr<ExternalTexture>& sdr, base::borrowed_fd&& sdrFence,
         const std::shared_ptr<ExternalTexture>& hdr, base::borrowed_fd&& hdrFence,
-        float hdrSdrRatio, ui::Dataspace dataspace, const std::shared_ptr<ExternalTexture>& sdr,
+        float hdrSdrRatio, ui::Dataspace dataspace,
         const std::shared_ptr<ExternalTexture>& gainmap) {
     resultPromise->set_value(Fence::NO_FENCE);
     return;
