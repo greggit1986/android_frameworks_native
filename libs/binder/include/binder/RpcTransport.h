@@ -27,11 +27,11 @@
 
 #include <utils/Errors.h>
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 #include <binder/Functional.h>
 #include <binder/RpcCertificateFormat.h>
 #include <binder/RpcThreads.h>
-#include <binder/unique_fd.h>
+#include "../../../../frameworks/native/include/binder/unique_fd.h"
 
 #include <sys/uio.h>
 

@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/IBinder.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IBinder.h"
 #include <utils/String16.h>
 #include <utils/String8.h>
 

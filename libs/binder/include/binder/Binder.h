@@ -18,8 +18,9 @@
 
 #include <atomic>
 #include <stdint.h>
-#include <binder/Common.h>
-#include <binder/IBinder.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IBinder.h"
+
 
 // ---------------------------------------------------------------------------
 namespace android {

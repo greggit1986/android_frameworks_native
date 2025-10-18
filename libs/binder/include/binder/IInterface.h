@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <binder/Binder.h>
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/Binder.h"
 
 #include <assert.h>
 

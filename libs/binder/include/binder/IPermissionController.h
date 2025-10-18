@@ -18,8 +18,8 @@
 
 #ifndef __ANDROID_VNDK__
 
-#include <binder/Common.h>
-#include <binder/IInterface.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IInterface.h"
 #include <stdlib.h>
 
 namespace android {

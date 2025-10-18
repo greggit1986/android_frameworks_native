@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 
 #ifndef BINDER_NO_LIBBASE
 

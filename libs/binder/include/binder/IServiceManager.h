@@ -15,8 +15,8 @@
  */
 
 #pragma once
-#include <binder/Common.h>
-#include <binder/IInterface.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IInterface.h"
 // Trusty has its own definition of socket APIs from trusty_ipc.h
 #ifndef __TRUSTY__
 #include <sys/socket.h>

@@ -21,8 +21,8 @@
 #include <sstream> // historical
 #include <ostream>
 
-#include <binder/Common.h>
-#include <binder/Parcel.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/Parcel.h"
 #include <utils/String8.h>
 #include <string>
 

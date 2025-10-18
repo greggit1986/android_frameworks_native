@@ -20,8 +20,8 @@
 #include <set>
 #include <vector>
 
-#include <binder/Common.h>
-#include <binder/Parcelable.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/Parcelable.h"
 #include <utils/String16.h>
 #include <utils/StrongPointer.h>
 

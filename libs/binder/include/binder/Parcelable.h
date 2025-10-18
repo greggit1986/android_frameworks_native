@@ -21,7 +21,7 @@
 #include <utils/Errors.h>
 #include <utils/String16.h>
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 
 namespace android {
 

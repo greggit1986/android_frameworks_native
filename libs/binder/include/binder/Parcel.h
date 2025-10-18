@@ -25,7 +25,7 @@
 #include <variant>
 #include <vector>
 
-#include <binder/unique_fd.h>
+#include "../../../../frameworks/native/include/binder/unique_fd.h"
 #ifndef BINDER_DISABLE_NATIVE_HANDLE
 #include <cutils/native_handle.h>
 #endif
@@ -34,9 +34,9 @@
 #include <utils/String16.h>
 #include <utils/Vector.h>
 
-#include <binder/Common.h>
-#include <binder/IInterface.h>
-#include <binder/Parcelable.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IInterface.h"
+#include "../../../../frameworks/native/include/binder/Parcelable.h"
 
 //NOLINTNEXTLINE(google-runtime-int) b/173188702
 typedef unsigned long long binder_size_t;

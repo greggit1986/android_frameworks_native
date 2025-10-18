@@ -21,10 +21,10 @@
 #include <utils/Errors.h>
 #include <utils/String16.h>
 
-#include <binder/IServiceManager.h>
-#include <binder/IPCThreadState.h>
-#include <binder/ProcessState.h>
-#include <binder/IServiceManager.h>
+#include "../../../../frameworks/native/include/binder/IServiceManager.h"
+#include "../../../../frameworks/native/include/binder/IPCThreadState.h"
+#include "../../../../frameworks/native/include/binder/ProcessState.h"
+#include "../../../../frameworks/native/include/binder/IServiceManager.h"
 
 // WARNING: deprecated - DO NOT USE - prefer to setup service directly.
 //

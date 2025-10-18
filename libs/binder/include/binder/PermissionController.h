@@ -18,7 +18,7 @@
 
 #ifndef __ANDROID_VNDK__
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 #include <binder/IPermissionController.h>
 #include <utils/Mutex.h>
 

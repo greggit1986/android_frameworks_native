@@ -19,8 +19,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include <binder/Common.h>
-#include <binder/IMemory.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IMemory.h"
 
 
 namespace android {

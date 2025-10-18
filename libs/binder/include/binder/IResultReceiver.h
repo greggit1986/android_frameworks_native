@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/IInterface.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IInterface.h"
 
 namespace android {
 

@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/IInterface.h>
-#include <binder/Parcel.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IInterface.h"
+#include "../../../../frameworks/native/include/binder/Parcel.h"
 
 // Set to 1 to enable CallStacks when logging errors
 #define SI_DUMP_CALLSTACKS 0

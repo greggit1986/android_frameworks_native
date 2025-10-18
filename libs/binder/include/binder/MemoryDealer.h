@@ -19,9 +19,9 @@
 #include <stdint.h>
 #include <sys/types.h>
 
-#include <binder/Common.h>
-#include <binder/IMemory.h>
-#include <binder/MemoryHeapBase.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IMemory.h"
+#include "../../../../frameworks/native/include/binder/MemoryHeapBase.h"
 
 namespace android {
 // ----------------------------------------------------------------------------

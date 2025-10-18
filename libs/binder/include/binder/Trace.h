@@ -22,7 +22,7 @@
 #include <cutils/trace.h>
 #endif
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 
 #ifdef ATRACE_TAG_AIDL
 #if ATRACE_TAG_AIDL != (1 << 24)

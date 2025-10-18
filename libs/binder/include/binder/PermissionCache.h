@@ -24,7 +24,7 @@
 #include <utils/String16.h>
 #include <utils/Singleton.h>
 #include <utils/SortedVector.h>
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 
 namespace android {
 // ---------------------------------------------------------------------------

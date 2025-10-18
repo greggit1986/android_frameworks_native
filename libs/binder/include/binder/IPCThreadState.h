@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/Parcel.h>
-#include <binder/ProcessState.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/Parcel.h"
+#include "../../../../frameworks/native/include/binder/ProcessState.h"
 #include <utils/Errors.h>
 #include <utils/Vector.h>
 

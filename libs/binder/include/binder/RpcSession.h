@@ -15,11 +15,11 @@
  */
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/IBinder.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IBinder.h"
 #include <binder/RpcThreads.h>
 #include <binder/RpcTransport.h>
-#include <binder/unique_fd.h>
+#include "../../../../frameworks/native/include/binder/unique_fd.h"
 #include <utils/Errors.h>
 #include <utils/RefBase.h>
 

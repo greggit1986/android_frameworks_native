@@ -22,7 +22,7 @@
 #include <memory>
 #include <thread>
 
-#include <binder/Common.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
 
 namespace android {
 

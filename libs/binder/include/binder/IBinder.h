@@ -16,8 +16,9 @@
 
 #pragma once
 
-#include <binder/Common.h>
-#include <binder/unique_fd.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/unique_fd.h"
+
 #include <utils/Errors.h>
 #include <utils/RefBase.h>
 #include <utils/String16.h>

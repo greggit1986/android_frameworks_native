@@ -18,9 +18,9 @@
 
 #include <functional>
 
-#include <binder/Common.h>
-#include <binder/IServiceManager.h>
-#include <binder/Status.h>
+#include "../../../../frameworks/native/include/binder/Common.h"
+#include "../../../../frameworks/native/include/binder/IServiceManager.h"
+#include "../../../../frameworks/native/include/binder/Status.h"
 #include <utils/StrongPointer.h>
 
 namespace android {
