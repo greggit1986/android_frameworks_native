@@ -36,6 +36,8 @@
 namespace android::renderengine::skia {
 
 namespace {
+// Warming shader cache, not framebuffer cache.
+constexpr bool kUseFrameBufferCache = false;
 
 // clang-format off
 // Any non-identity matrix will do.
@@ -130,7 +132,8 @@ static void drawShadowLayers(SkiaRenderEngine* renderengine, const DisplaySettin
         caster.geometry.positionTransform = transform;
 
         auto layers = std::vector<LayerSettings>{layer, caster};
-        renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+        renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache,
+                                 base::unique_fd());
     }
 }
 
@@ -167,7 +170,8 @@ static void drawImageLayers(SkiaRenderEngine* renderengine, const DisplaySetting
                 for (auto alpha : {half(.2f), half(1.0f)}) {
                     layer.alpha = alpha;
                     auto layers = std::vector<LayerSettings>{layer};
-                    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+                    renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache,
+                                             base::unique_fd());
                 }
             }
         }
@@ -195,7 +199,8 @@ static void drawSolidLayers(SkiaRenderEngine* renderengine, const DisplaySetting
         for (float roundedCornersRadius : {0.0f, 50.f}) {
             layer.geometry.roundedCornersRadius = {roundedCornersRadius, roundedCornersRadius};
             auto layers = std::vector<LayerSettings>{layer};
-            renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+            renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache,
+                                     base::unique_fd());
         }
     }
 }
@@ -218,7 +223,8 @@ static void drawBlurLayers(SkiaRenderEngine* renderengine, const DisplaySettings
     for (int radius : {9, 60}) {
         layer.backgroundBlurRadius = radius;
         auto layers = std::vector<LayerSettings>{layer};
-        renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+        renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache,
+                                 base::unique_fd());
     }
 }
 
@@ -264,7 +270,8 @@ static void drawClippedLayers(SkiaRenderEngine* renderengine, const DisplaySetti
                 for (float alpha : {0.5f, 1.f}) {
                     layer.alpha = alpha;
                     auto layers = std::vector<LayerSettings>{layer};
-                    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+                    renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache,
+                                             base::unique_fd());
                 }
             }
         }
@@ -301,7 +308,7 @@ static void drawPIPImageLayer(SkiaRenderEngine* renderengine, const DisplaySetti
     };
 
     auto layers = std::vector<LayerSettings>{layer};
-    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+    renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache, base::unique_fd());
 }
 
 static void drawHolePunchLayer(SkiaRenderEngine* renderengine, const DisplaySettings& display,
@@ -330,7 +337,7 @@ static void drawHolePunchLayer(SkiaRenderEngine* renderengine, const DisplaySett
     };
 
     auto layers = std::vector<LayerSettings>{layer};
-    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+    renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache, base::unique_fd());
 }
 
 static void drawImageDimmedLayers(SkiaRenderEngine* renderengine, const DisplaySettings& display,
@@ -362,7 +369,7 @@ static void drawImageDimmedLayers(SkiaRenderEngine* renderengine, const DisplayS
         layer.whitePointNits = layerWhitePoint;
         layers.push_back(layer);
     }
-    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+    renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
 }
 
 static void drawTransparentImageDimmedLayers(SkiaRenderEngine* renderengine,
@@ -405,7 +412,7 @@ static void drawTransparentImageDimmedLayers(SkiaRenderEngine* renderengine,
                     layer.whitePointNits = layerWhitePoint;
                     layers.push_back(layer);
                 }
-                renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+                renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
             }
         }
     }
@@ -455,7 +462,7 @@ static void drawClippedDimmedImageLayers(SkiaRenderEngine* renderengine,
             layer.whitePointNits = layerWhitePoint;
             layers.push_back(layer);
         }
-        renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+        renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
     }
 }
 
@@ -482,7 +489,7 @@ static void drawSolidDimmedLayers(SkiaRenderEngine* renderengine, const DisplayS
         layer.whitePointNits = layerWhitePoint;
         layers.push_back(layer);
     }
-    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+    renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
 }
 
 static void drawBT2020ImageLayers(SkiaRenderEngine* renderengine, const DisplaySettings& display,
@@ -514,7 +521,7 @@ static void drawBT2020ImageLayers(SkiaRenderEngine* renderengine, const DisplayS
         layer.whitePointNits = -1.f;
         layers.push_back(layer);
 
-        renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+        renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
     }
 }
 static void drawBT2020ClippedImageLayers(SkiaRenderEngine* renderengine,
@@ -548,7 +555,7 @@ static void drawBT2020ClippedImageLayers(SkiaRenderEngine* renderengine,
     };
 
     std::vector<LayerSettings> layers = {layer};
-    renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+    renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
 }
 
 static void drawExtendedHDRImageLayers(SkiaRenderEngine* renderengine,
@@ -585,7 +592,7 @@ static void drawExtendedHDRImageLayers(SkiaRenderEngine* renderengine,
                 layer.whitePointNits = layerWhitePoint;
                 layers.push_back(layer);
             }
-            renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+            renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
         }
     }
 }
@@ -621,7 +628,7 @@ static void drawP3ImageLayers(SkiaRenderEngine* renderengine, const DisplaySetti
             layer.whitePointNits = layerWhitePoint;
             layers.push_back(layer);
         }
-        renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+        renderengine->drawLayers(display, layers, dstTexture, false, base::unique_fd());
     }
 }
 
@@ -962,7 +969,7 @@ void Cache::primeShaderCache(SkiaRenderEngine* renderengine, PrimeCacheConfig co
         // call get() to make it synchronous
         {
             SFTRACE_NAME("finalLayer");
-            renderengine->drawLayers(display, layers, dstTexture, base::unique_fd()).get();
+            renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache, base::unique_fd()).get();
         }
 
         const nsecs_t timeAfter = systemTime();
