@@ -73,7 +73,6 @@ struct LayerSnapshot : public compositionengine::LayerFECompositionState {
     int32_t sequence;
     std::string name;
     std::string debugName;
-    uint32_t textureName;
     bool contentOpaque;
     bool layerOpaqueFlagSet;
     RoundedCornerState roundedCorner;
