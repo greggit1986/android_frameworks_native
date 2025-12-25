@@ -691,7 +691,7 @@ static void drawExtendedHDRFilteredImageLayers(SkiaRenderEngine* renderengine, c
                 layer.whitePointNits = layerWhitePoint;
                 layers.push_back(layer);
             }
-            renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+            renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache, base::unique_fd());
         }
     }
 }
@@ -748,7 +748,8 @@ static void drawExtendedHDRFilteredImageShadowLayers(SkiaRenderEngine* rendereng
                 layer.whitePointNits = layerWhitePoint;
 
                 auto layers = std::vector<LayerSettings>{layer, caster};
-                renderengine->drawLayers(display, layers, dstTexture, base::unique_fd());
+                renderengine->drawLayers(display, layers, dstTexture, kUseFrameBufferCache, base::unique_fd());
+
             }
         }
     }
@@ -959,7 +960,6 @@ void Cache::primeShaderCache(SkiaRenderEngine* renderengine, PrimeCacheConfig co
 
             drawP3ImageLayers(renderengine, p3DisplayEnhance, dstTexture, externalTexture);
         }
-
 
         // draw one final layer synchronously to force GL submit
         LayerSettings layer{
