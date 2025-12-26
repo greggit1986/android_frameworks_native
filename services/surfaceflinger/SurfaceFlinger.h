@@ -861,6 +861,9 @@ private:
      */
     status_t createLayer(LayerCreationArgs& args, gui::CreateSurfaceResult& outResult);
 
+    status_t createBufferStateLayer(LayerCreationArgs& args, sp<IBinder>* outHandle,
+                                    sp<Layer>* outLayer);
+
     status_t createLayer(const LayerCreationArgs& args, sp<IBinder>* outHandle,
                          sp<Layer>* outLayer);
 

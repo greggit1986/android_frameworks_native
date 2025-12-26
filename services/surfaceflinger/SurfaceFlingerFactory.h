@@ -80,6 +80,8 @@ public:
 
     virtual std::unique_ptr<compositionengine::CompositionEngine> createCompositionEngine() = 0;
 
+    virtual sp<Layer> createBufferStateLayer(const LayerCreationArgs& args) = 0;
+
     virtual sp<Layer> createLayer(const LayerCreationArgs& args) = 0;
     virtual sp<LayerFE> createLayerFE(const std::string& layerName, const Layer* owner) = 0;
     virtual std::unique_ptr<FrameTracer> createFrameTracer() = 0;

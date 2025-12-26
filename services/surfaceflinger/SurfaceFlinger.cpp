@@ -5698,7 +5698,7 @@ status_t SurfaceFlinger::createLayer(LayerCreationArgs& args, gui::CreateSurface
             args.flags |= ISurfaceComposerClient::eNoColorFill;
             [[fallthrough]];
         case ISurfaceComposerClient::eFXSurfaceEffect: {
-            result = createLayer(args, &outResult.handle, &layer);
+            result = createBufferStateLayer(args, &outResult.handle, &layer);
             if (result != NO_ERROR) {
                 return result;
             }
@@ -5740,13 +5740,23 @@ status_t SurfaceFlinger::createLayer(LayerCreationArgs& args, gui::CreateSurface
     return result;
 }
 
-status_t SurfaceFlinger::createLayer(const LayerCreationArgs& args, sp<IBinder>* handle,
-                                     sp<Layer>* outLayer) {
+status_t SurfaceFlinger::createBufferStateLayer(LayerCreationArgs& args, sp<IBinder>* handle,
+                                                sp<Layer>* outLayer) {
     if (checkLayerLeaks() != NO_ERROR) {
         return NO_MEMORY;
     }
     args.textureName = getNewTexture();
     *outLayer = getFactory().createBufferStateLayer(args);
+    *handle = (*outLayer)->getHandle();
+    return NO_ERROR;
+}
+
+status_t SurfaceFlinger::createLayer(const LayerCreationArgs& args, sp<IBinder>* handle,
+                                     sp<Layer>* outLayer) {
+    if (checkLayerLeaks() != NO_ERROR) {
+        return NO_MEMORY;
+    }
+    *outLayer = getFactory().createLayer(args);
     *handle = (*outLayer)->getHandle();
     return NO_ERROR;
 }
